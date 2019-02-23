@@ -48,8 +48,8 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function lists()
+    public function recipe_lists()
     {
-        return $this->hasMany('App\List');
+        return $this->hasMany('App\RecipeList');
     }
 }

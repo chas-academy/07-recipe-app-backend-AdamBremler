@@ -25,9 +25,9 @@ Route::group(['middleware' => 'auth.jwt'], function () {
  
     Route::get('user', 'ApiController@getAuthUser');
  
-    Route::get('lists', 'ListController@index');
-    Route::get('lists/{id}', 'ListController@show');
-    Route::post('lists', 'ListController@store');
-    Route::put('lists/{id}', 'ListController@update');
-    Route::delete('lists/{id}', 'ListController@destroy');
+    Route::get('lists', 'RecipeListController@index');
+    Route::get('lists/{id}', 'RecipeListController@show');
+    Route::post('lists', 'RecipeListController@store');
+    Route::put('lists/{id}', 'RecipeListController@update');
+    Route::delete('lists/{id}', 'RecipeListController@destroy');
 });
