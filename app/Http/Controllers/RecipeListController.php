@@ -19,7 +19,7 @@ class RecipeListController extends Controller
     {
         return $this->user
             ->recipe_lists()
-            ->get(['name', 'recipes'])
+            ->get(['id', 'name', 'recipes'])
             ->toArray();
     }
 
@@ -40,13 +40,12 @@ class RecipeListController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'recipes' => 'required'
+            'name' => 'required'
         ]);
     
         $list = new RecipeList();
         $list->name = $request->name;
-        $list->recipes = $request->recipes;
+        $list->recipes = [];
     
         if ($this->user->recipe_lists()->save($list)) {
             return response()->json([
@@ -74,8 +73,7 @@ class RecipeListController extends Controller
             ], 400);
         }
     
-        $updated = $list->fill($request->all())
-            ->save();
+        $updated = $list->fill($request->all())->save();
     
         if ($updated) {
             return response()->json([
